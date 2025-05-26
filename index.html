@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geister - The Ghost Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>👻 Geister</h1>
+            <div class="game-info">
+                <div class="current-player">Current Player: <span id="current-player">Blue</span></div>
+                <div class="game-status" id="game-status">Select your ghost placement</div>
+            </div>
+        </header>
+
+        <div class="setup-phase" id="setup-phase">
+            <div class="setup-container">
+                <h2>Setup Phase - Player <span id="setup-player">Blue</span></h2>
+                <p>Choose which ghosts are good (👻) and which are evil (💀)</p>
+                <p>You need exactly 4 good ghosts and 4 evil ghosts</p>
+                
+                <div class="ghost-selection">
+                    <div class="ghost-row">
+                        <div class="ghost-selector" data-pos="0">
+                            <div class="ghost-piece blue" data-type="good">👻</div>
+                            <div class="type-selector">
+                                <button class="type-btn active" data-type="good">Good</button>
+                                <button class="type-btn" data-type="evil">Evil</button>
+                            </div>
+                        </div>
+                        <div class="ghost-selector" data-pos="1">
+                            <div class="ghost-piece blue" data-type="good">👻</div>
+                            <div class="type-selector">
+                                <button class="type-btn active" data-type="good">Good</button>
+                                <button class="type-btn" data-type="evil">Evil</button>
+                            </div>
+                        </div>
+                        <div class="ghost-selector" data-pos="2">
+                            <div class="ghost-piece blue" data-type="good">👻</div>
+                            <div class="type-selector">
+                                <button class="type-btn active" data-type="good">Good</button>
+                                <button class="type-btn" data-type="evil">Evil</button>
+                            </div>
+                        </div>
+                        <div class="ghost-selector" data-pos="3">
+                            <div class="ghost-piece blue" data-type="good">👻</div>
+                            <div class="type-selector">
+                                <button class="type-btn active" data-type="good">Good</button>
+                                <button class="type-btn" data-type="evil">Evil</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ghost-row">
+                        <div class="ghost-selector" data-pos="4">
+                            <div class="ghost-piece blue" data-type="good">👻</div>
+                            <div class="type-selector">
+                                <button class="type-btn active" data-type="good">Good</button>
+                                <button class="type-btn" data-type="evil">Evil</button>
+                            </div>
+                        </div>
+                        <div class="ghost-selector" data-pos="5">
+                            <div class="ghost-piece blue" data-type="good">👻</div>
+                            <div class="type-selector">
+                                <button class="type-btn active" data-type="good">Good</button>
+                                <button class="type-btn" data-type="evil">Evil</button>
+                            </div>
+                        </div>
+                        <div class="ghost-selector" data-pos="6">
+                            <div class="ghost-piece blue" data-type="good">👻</div>
+                            <div class="type-selector">
+                                <button class="type-btn active" data-type="good">Good</button>
+                                <button class="type-btn" data-type="evil">Evil</button>
+                            </div>
+                        </div>
+                        <div class="ghost-selector" data-pos="7">
+                            <div class="ghost-piece blue" data-type="good">👻</div>
+                            <div class="type-selector">
+                                <button class="type-btn active" data-type="good">Good</button>
+                                <button class="type-btn" data-type="evil">Evil</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="setup-info">
+                    <div>Good ghosts: <span id="good-count">8</span>/4</div>
+                    <div>Evil ghosts: <span id="evil-count">0</span>/4</div>
+                </div>
+                
+                <button id="confirm-setup" class="confirm-btn" disabled>Confirm Setup</button>
+            </div>
+        </div>
+
+        <div class="game-board-container" id="game-board-container" style="display: none;">
+            <div class="board">
+                <div class="exit-zone top">
+                    <div class="exit" data-exit="red-left">🚪</div>
+                    <div class="exit" data-exit="red-right">🚪</div>
+                </div>
+                
+                <div class="board-grid">
+                    <!-- Row 0 (Red's back row) -->
+                    <div class="cell" data-row="0" data-col="0"></div>
+                    <div class="cell" data-row="0" data-col="1"></div>
+                    <div class="cell" data-row="0" data-col="2"></div>
+                    <div class="cell" data-row="0" data-col="3"></div>
+                    <div class="cell" data-row="0" data-col="4"></div>
+                    <div class="cell" data-row="0" data-col="5"></div>
+                    
+                    <!-- Row 1 (Red's front row) -->
+                    <div class="cell" data-row="1" data-col="0"></div>
+                    <div class="cell" data-row="1" data-col="1"></div>
+                    <div class="cell" data-row="1" data-col="2"></div>
+                    <div class="cell" data-row="1" data-col="3"></div>
+                    <div class="cell" data-row="1" data-col="4"></div>
+                    <div class="cell" data-row="1" data-col="5"></div>
+                    
+                    <!-- Middle empty rows -->
+                    <div class="cell" data-row="2" data-col="0"></div>
+                    <div class="cell" data-row="2" data-col="1"></div>
+                    <div class="cell" data-row="2" data-col="2"></div>
+                    <div class="cell" data-row="2" data-col="3"></div>
+                    <div class="cell" data-row="2" data-col="4"></div>
+                    <div class="cell" data-row="2" data-col="5"></div>
+                    
+                    <div class="cell" data-row="3" data-col="0"></div>
+                    <div class="cell" data-row="3" data-col="1"></div>
+                    <div class="cell" data-row="3" data-col="2"></div>
+                    <div class="cell" data-row="3" data-col="3"></div>
+                    <div class="cell" data-row="3" data-col="4"></div>
+                    <div class="cell" data-row="3" data-col="5"></div>
+                    
+                    <!-- Row 4 (Blue's front row) -->
+                    <div class="cell" data-row="4" data-col="0"></div>
+                    <div class="cell" data-row="4" data-col="1"></div>
+                    <div class="cell" data-row="4" data-col="2"></div>
+                    <div class="cell" data-row="4" data-col="3"></div>
+                    <div class="cell" data-row="4" data-col="4"></div>
+                    <div class="cell" data-row="4" data-col="5"></div>
+                    
+                    <!-- Row 5 (Blue's back row) -->
+                    <div class="cell" data-row="5" data-col="0"></div>
+                    <div class="cell" data-row="5" data-col="1"></div>
+                    <div class="cell" data-row="5" data-col="2"></div>
+                    <div class="cell" data-row="5" data-col="3"></div>
+                    <div class="cell" data-row="5" data-col="4"></div>
+                    <div class="cell" data-row="5" data-col="5"></div>
+                </div>
+                
+                <div class="exit-zone bottom">
+                    <div class="exit" data-exit="blue-left">🚪</div>
+                    <div class="exit" data-exit="blue-right">🚪</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="captured-ghosts">
+            <div class="captured-section">
+                <h3>Red Captured</h3>
+                <div id="red-captured" class="captured-list"></div>
+            </div>
+            <div class="captured-section">
+                <h3>Blue Captured</h3>
+                <div id="blue-captured" class="captured-list"></div>
+            </div>
+        </div>
+
+        <div class="game-over" id="game-over" style="display: none;">
+            <div class="game-over-content">
+                <h2 id="winner-text"></h2>
+                <p id="win-reason"></p>
+                <button id="new-game" class="new-game-btn">New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
